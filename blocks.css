@@ -1,0 +1,16 @@
+.first{
+    width:100px;
+    height: 100px;
+    background-color: red;
+    
+}
+.sec{
+    width:100px;
+    height: 100px;
+    background-color: blue;
+}
+.third{
+    width:100px;
+    height: 100px;
+    background-color: yellow;
+}
