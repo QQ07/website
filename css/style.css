@@ -159,7 +159,12 @@ hr {
     max-width: 100%;
     overflow-x: hidden;
   }
-
+.name{
+  font-size: 3.4rem;
+}
+.tagline{
+  font-size: 1.5rem;
+}
   .mountain,
   .topCloud,
   .downCloud {
@@ -196,5 +201,15 @@ hr {
   .fire{
     position: relative;
     right:3rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+
+  .me{
+    right: 7rem;
+  }
+  .meDesc{
+    left: 5rem;
   }
 }
