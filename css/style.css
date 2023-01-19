@@ -1,34 +1,32 @@
-div { 
-
+div {
   min-width: 200px;
   min-height: 100px;
 }
 h1 {
-  font-family: 'Sacramento', cursive;
+  font-family: "Sacramento", cursive;
   font-size: 5.62rem;
   margin: 120px auto 0 auto;
   color: #6a9c7b;
   line-height: 2em;
-  
 }
-h3{
+h3 {
   font-size: 2.5rem;
-  font-family: 'Montserrat Alternates', sans-serif;
-  color: #749F82;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #749f82;
   font-weight: normal;
-  margin:0;
+  margin: 0;
   margin-bottom: 1rem;
 }
-h2{
+h2 {
   font-size: 3rem;
-  font-family: 'Montserrat Alternates', sans-serif;
-  color: #749F82;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #749f82;
   font-weight: normal;
 }
 body {
   margin: 0;
   text-align: center;
-  color: #40514E;
+  color: #40514e;
 }
 .top-container {
   background-color: #d9ffa5;
@@ -36,62 +34,60 @@ body {
   padding-bottom: 0;
   /* max-width: 300px; */
 }
-.me{
+.me {
   margin: 1rem 2rem;
   float: left;
 }
-.mountain{
-  opacity:0.5;
+.mountain {
+  opacity: 0.5;
 }
 .middle-container {
   background-color: #fff;
 }
 
-
-.downCloud{
-    position:absolute;
-    opacity: 0.8;
-    left: 200px;
+.downCloud {
+  position: absolute;
+  opacity: 0.8;
+  left: 200px;
 }
-.topCloud{
-  position:relative;
-  top:100px;
-  left:350px;
+.topCloud {
+  position: relative;
+  top: 100px;
+  left: 350px;
   opacity: 0.8;
 }
-.profile{
-  width:50%;
-  margin:auto;
+.profile {
+  width: 50%;
+  margin: auto;
 }
-.skill-row{
-  width:40%;
+.skill-row {
+  width: 40%;
   margin: 50px auto;
 }
-p{
+p {
   text-align: left;
   font-size: 1.5rem;
   line-height: 2;
-
 }
-.profile{
-  height:550px;
+.profile {
+  height: 550px;
 }
-.hello{
-  padding:50px;
+.hello {
+  padding: 50px;
 }
-.comp{
-  float:left;
+.comp {
+  float: left;
   margin-right: 30px;
 }
-.fire{
-  float:right;
+.fire {
+  float: right;
   margin-right: 30px;
   padding-top: 50px;
 }
-.skill1{
+.skill1 {
   margin-top: 0;
 }
-.contactP{
+.contactP {
   text-align: center;
 }
 
@@ -134,26 +130,71 @@ hr {
 
 .bottom-container {
   /* display:block; */
-  width:100%;
-  background-color: #CFFF8D;
+  width: 100%;
+  background-color: #cfff8d;
   /* margin: 50px auto 0; */
-  margin-top:50px;
+  margin-top: 50px;
   padding-top: 2rem;
- }
-.footer-link{
+}
+.footer-link {
   /* position: absolute; */
   /* top:20px; */
   font-size: 1.5rem;
   margin: 1% 2%;
   text-decoration: wavy;
-  color: #425F57;
+  color: #425f57;
 }
-.footer-link:hover{
+.footer-link:hover {
   color: #7f9c94;
-  ;
 }
-.footerName{
+.footerName {
   text-align: center;
   font-size: 1.2rem;
-  color: #425F57;
+  color: #425f57;
+}
+
+@media only screen and (max-width: 810px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .mountain,
+  .topCloud,
+  .downCloud {
+    display: none;
+  }
+  h1 {
+    margin: 0;
+  }
+  .me,
+  .comp,
+  .fire {
+    float: none;
+  }
+  .me {
+    position: relative;
+    right: 8rem;
+  }
+  .hello {
+    position: relative;
+    bottom: 575px;
+    left: 2.5rem;
+  }
+  .meDesc {
+    position: relative;
+    bottom: 650px;
+    left: 6rem;
+  }
+  .comp {
+    margin: auto;
+  }
+  /* .row2{
+    display: none;
+  } */
+  .fire{
+    position: relative;
+    right:3rem;
+  }
 }
