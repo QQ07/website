@@ -200,11 +200,13 @@
         if (touchendX < touchstartX) {
             console.log('Swiped Left');
             moveToNextSlide();
+            interval=20000;
         }
     
         if (touchendX > touchstartX) {
             console.log('Swiped Right');
             moveToPreviousSlide();
+            interval=20000;
         }
     
         if (touchendY < touchstartY) {
