@@ -14,9 +14,9 @@
       rel="stylesheet"
     />
     <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
-  />
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    />
   </head>
   <body>
     <div class="top-container">
@@ -28,9 +28,9 @@
       <img class="downCloud" src="images/cloud.png" alt="a cloud" />
       <img class="mountain" src="images/mountain.png" alt="a mountain" />
     </div>
-    
+
     <div class="middle-container">
-      <hr>
+      <hr />
       <div class="profile">
         <img class="me" src="rohan.png" alt="Rohan's photo" />
         <h2 class="hello">Hello..</h2>
@@ -39,7 +39,7 @@
           currently Pursuing a BTech a Second Year Student at VIIT, Pune.
         </p>
       </div>
-      <hr>
+      <hr />
       <div class="skills">
         <h2>My Skills</h2>
         <div class="skill-row">
@@ -50,20 +50,25 @@
             alt=""
           />
           <h3>I Love Coding</h3>
-          <p class="skill1">My favourite programming languages are C++ and Python.</p>
+          <p class="skill1">
+            My favourite programming languages are C++ and Python.
+          </p>
         </div>
         <div class="skill-row row2">
-          <iframe class="fire"
+          <iframe
+            class="fire"
             src="https://giphy.com/embed/hWjuPnilg81rDORdNn"
             frameborder="0"
           ></iframe>
           <img class="" src="" alt="" />
           <h3>Fire</h3>
           <p>
-            I have a fire in me, to explore, to learn new things and to gain new skills.</p>
+            I have a fire in me, to explore, to learn new things and to gain new
+            skills.
+          </p>
         </div>
       </div>
-      <hr>
+      <hr />
       <div class="contact-me">
         <h2>Get In Touch</h2>
         <h3>Want to talk with me one-to-one?</h3>
@@ -105,124 +110,135 @@
     </div>
 
     <div class="bottom-container">
-      <a class="footer-link" href="https://www.linkedin.com/in/rohan-vaidya-359680190/">LinkedIn</a>
+      <a
+        class="footer-link"
+        href="https://www.linkedin.com/in/rohan-vaidya-359680190/"
+        >LinkedIn</a
+      >
       <a class="footer-link" href="https://twitter.com/vaidya_jiii">Twitter</a>
       <a class="footer-link" href="#">Website</a>
       <p class="footerName">© Rohan Sanjay Vaidya</p>
     </div>
   </body>
-    <script>
-      const slideContainer = document.querySelector(".m-container");
-      const slide = document.querySelector(".slides");
-      const nextBtn = document.getElementById("next-btn");
-      const prevBtn = document.getElementById("prev-btn");
-      const interval = 7000;
+  <script>
+    const slideContainer = document.querySelector(".m-container");
+    const slide = document.querySelector(".slides");
+    const nextBtn = document.getElementById("next-btn");
+    const prevBtn = document.getElementById("prev-btn");
+    const interval = 7000;
 
-      let slides = document.querySelectorAll(".slide");
-      let index = 1;
-      let slideId;
+    let slides = document.querySelectorAll(".slide");
+    let index = 1;
+    let slideId;
 
-      const firstClone = slides[0].cloneNode(true);
-      const lastClone = slides[slides.length - 1].cloneNode(true);
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slides.length - 1].cloneNode(true);
 
-      firstClone.id = "first-clone";
-      lastClone.id = "last-clone";
+    firstClone.id = "first-clone";
+    lastClone.id = "last-clone";
 
-      slide.append(firstClone);
-      slide.prepend(lastClone);
+    slide.append(firstClone);
+    slide.prepend(lastClone);
 
-      const slideWidth = slides[index].clientWidth;
+    const slideWidth = slides[index].clientWidth;
 
+    slide.style.transform = `translateX(${-slideWidth * index}px)`;
+
+    console.log(slides);
+
+    const startSlide = () => {
+      slideId = setInterval(() => {
+        moveToNextSlide();
+      }, interval);
+    };
+
+    const getSlides = () => document.querySelectorAll(".slide");
+
+    slide.addEventListener("transitionend", () => {
+      slides = getSlides();
+      if (slides[index].id === firstClone.id) {
+        slide.style.transition = "none";
+        index = 1;
+        slide.style.transform = `translateX(${-slideWidth * index}px)`;
+      }
+
+      if (slides[index].id === lastClone.id) {
+        slide.style.transition = "none";
+        index = slides.length - 2;
+        slide.style.transform = `translateX(${-slideWidth * index}px)`;
+      }
+    });
+
+    const moveToNextSlide = () => {
+      slides = getSlides();
+      if (index >= slides.length - 1) return;
+      index++;
+      slide.style.transition = ".7s ease-out";
       slide.style.transform = `translateX(${-slideWidth * index}px)`;
+    };
 
-      console.log(slides);
+    const moveToPreviousSlide = () => {
+      if (index <= 0) return;
+      index--;
+      slide.style.transition = ".7s ease-out";
+      slide.style.transform = `translateX(${-slideWidth * index}px)`;
+    };
 
-      const startSlide = () => {
-        slideId = setInterval(() => {
-          moveToNextSlide();
-        }, interval);
-      };
+    slideContainer.addEventListener("mouseenter", () => {
+      clearInterval(slideId);
+    });
 
-      const getSlides = () => document.querySelectorAll(".slide");
+    slideContainer.addEventListener("mouseleave", startSlide);
+    nextBtn.addEventListener("click", moveToNextSlide);
+    prevBtn.addEventListener("click", moveToPreviousSlide);
 
-      slide.addEventListener("transitionend", () => {
-        slides = getSlides();
-        if (slides[index].id === firstClone.id) {
-          slide.style.transition = "none";
-          index = 1;
-          slide.style.transform = `translateX(${-slideWidth * index}px)`;
-        }
-
-        if (slides[index].id === lastClone.id) {
-          slide.style.transition = "none";
-          index = slides.length - 2;
-          slide.style.transform = `translateX(${-slideWidth * index}px)`;
-        }
-      });
-
-      const moveToNextSlide = () => {
-        slides = getSlides();
-        if (index >= slides.length - 1) return;
-        index++;
-        slide.style.transition = ".7s ease-out";
-        slide.style.transform = `translateX(${-slideWidth * index}px)`;
-      };
-
-      const moveToPreviousSlide = () => {
-        if (index <= 0) return;
-        index--;
-        slide.style.transition = ".7s ease-out";
-        slide.style.transform = `translateX(${-slideWidth * index}px)`;
-      };
-
-      slideContainer.addEventListener("mouseenter", () => {
-        interval = 25000;
-      });
-
-      slideContainer.addEventListener("mouseleave", startSlide);
-      nextBtn.addEventListener("click", moveToNextSlide);
-      prevBtn.addEventListener("click", moveToPreviousSlide);
-
-
-      slideContainer.addEventListener('touchstart', function (event) {
+    slideContainer.addEventListener(
+      "touchstart",
+      function (event) {
         touchstartX = event.changedTouches[0].screenX;
         touchstartY = event.changedTouches[0].screenY;
-    }, false);
-    
-    slideContainer.addEventListener('touchend', function (event) {
+      },
+      false
+    );
+
+    slideContainer.addEventListener(
+      "touchend",
+      function (event) {
         touchendX = event.changedTouches[0].screenX;
         touchendY = event.changedTouches[0].screenY;
         handleGesture();
-    }, false);
-    
-    
+      },
+      false
+    );
+
     function handleGesture() {
-        if (touchendX < touchstartX) {
-            console.log('Swiped Left');
-            moveToNextSlide();
-            interval=20000;
-        }
-    
-        if (touchendX > touchstartX) {
-            console.log('Swiped Right');
-            moveToPreviousSlide();
-            interval=20000;
-        }
-    
-        if (touchendY < touchstartY) {
-            console.log('Swiped Up');
-        }
-    
-        if (touchendY > touchstartY) {
-            console.log('Swiped Down');
-        }
-    
-        if (touchendY === touchstartY) {
-            console.log('Tap');
-        }
+      if (touchendX < touchstartX) {
+        console.log("Swiped Left");
+        moveToNextSlide();
+        clearInterval(slideId);
+      }
+
+      if (touchendX > touchstartX) {
+        console.log("Swiped Right");
+        moveToPreviousSlide();
+        clearInterval(slideId);
+      }
+
+      if (touchendY < touchstartY) {
+        console.log("Swiped Up");
+        startSlide();
+      }
+
+      if (touchendY > touchstartY) {
+        console.log("Swiped Down");
+        startSlide();
+      }
+
+      if (touchendY === touchstartY) {
+        console.log("Tap");
+      }
     }
 
-      startSlide();
+    startSlide();
   </script>
-  
 </html>
