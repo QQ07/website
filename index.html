@@ -13,12 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat+Alternates:wght@200&family=Sacramento&display=swap"
-      rel="stylesheet"
-    />
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+  />
   </head>
   <body>
     <div class="top-container">
@@ -75,6 +73,36 @@
         <a class="btn" href="mailto:rohanv.rvaidya@gmail.com">CONTACT ME</a>
       </div>
     </div>
+    <div class="m-container">
+      <div class="slides">
+        <div class="slide">
+          <img src="/gallery/2.jpg" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/gallery/3.jpg" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/gallery/4.jpg" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/gallery/6.jpg" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/gallery/7.jpg" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/gallery/8.jpg" alt="" />
+        </div>
+      </div>
+      <div class="slide-controls">
+        <button id="prev-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="next-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
 
     <div class="bottom-container">
       <a class="footer-link" href="https://www.linkedin.com/in/rohan-vaidya-359680190/">LinkedIn</a>
@@ -83,4 +111,116 @@
       <p class="footerName">© Rohan Sanjay Vaidya</p>
     </div>
   </body>
+    <script>
+      const slideContainer = document.querySelector(".m-container");
+      const slide = document.querySelector(".slides");
+      const nextBtn = document.getElementById("next-btn");
+      const prevBtn = document.getElementById("prev-btn");
+      const interval = 7000;
+
+      let slides = document.querySelectorAll(".slide");
+      let index = 1;
+      let slideId;
+
+      const firstClone = slides[0].cloneNode(true);
+      const lastClone = slides[slides.length - 1].cloneNode(true);
+
+      firstClone.id = "first-clone";
+      lastClone.id = "last-clone";
+
+      slide.append(firstClone);
+      slide.prepend(lastClone);
+
+      const slideWidth = slides[index].clientWidth;
+
+      slide.style.transform = `translateX(${-slideWidth * index}px)`;
+
+      console.log(slides);
+
+      const startSlide = () => {
+        slideId = setInterval(() => {
+          moveToNextSlide();
+        }, interval);
+      };
+
+      const getSlides = () => document.querySelectorAll(".slide");
+
+      slide.addEventListener("transitionend", () => {
+        slides = getSlides();
+        if (slides[index].id === firstClone.id) {
+          slide.style.transition = "none";
+          index = 1;
+          slide.style.transform = `translateX(${-slideWidth * index}px)`;
+        }
+
+        if (slides[index].id === lastClone.id) {
+          slide.style.transition = "none";
+          index = slides.length - 2;
+          slide.style.transform = `translateX(${-slideWidth * index}px)`;
+        }
+      });
+
+      const moveToNextSlide = () => {
+        slides = getSlides();
+        if (index >= slides.length - 1) return;
+        index++;
+        slide.style.transition = ".7s ease-out";
+        slide.style.transform = `translateX(${-slideWidth * index}px)`;
+      };
+
+      const moveToPreviousSlide = () => {
+        if (index <= 0) return;
+        index--;
+        slide.style.transition = ".7s ease-out";
+        slide.style.transform = `translateX(${-slideWidth * index}px)`;
+      };
+
+      slideContainer.addEventListener("mouseenter", () => {
+        interval = 25000;
+      });
+
+      slideContainer.addEventListener("mouseleave", startSlide);
+      nextBtn.addEventListener("click", moveToNextSlide);
+      prevBtn.addEventListener("click", moveToPreviousSlide);
+
+
+      slideContainer.addEventListener('touchstart', function (event) {
+        touchstartX = event.changedTouches[0].screenX;
+        touchstartY = event.changedTouches[0].screenY;
+    }, false);
+    
+    slideContainer.addEventListener('touchend', function (event) {
+        touchendX = event.changedTouches[0].screenX;
+        touchendY = event.changedTouches[0].screenY;
+        handleGesture();
+    }, false);
+    
+    
+    function handleGesture() {
+        if (touchendX < touchstartX) {
+            console.log('Swiped Left');
+            moveToNextSlide();
+        }
+    
+        if (touchendX > touchstartX) {
+            console.log('Swiped Right');
+            moveToPreviousSlide();
+        }
+    
+        if (touchendY < touchstartY) {
+            console.log('Swiped Up');
+        }
+    
+        if (touchendY > touchstartY) {
+            console.log('Swiped Down');
+        }
+    
+        if (touchendY === touchstartY) {
+            console.log('Tap');
+        }
+    }
+
+      startSlide();
+  </script>
+  
 </html>
